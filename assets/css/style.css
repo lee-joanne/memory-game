@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&family=Rubik&display=swap');
 
+/* basic styling  */
+
 * {
     margin: 0;
     padding: 0;
@@ -26,7 +28,7 @@ button {
 .body-container {
     width: 60%;
     height: 75%;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.7);
     padding: 25px;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
         rgba(0, 0, 0, 0.23) 0px 6px 6px;
@@ -41,6 +43,10 @@ button {
     color: black;
 }
 
+.logo-anchor:hover {
+    color: rgba(0, 0, 0, 0.3);
+}
+
 .centering {
     text-align: center;
 }
@@ -49,6 +55,13 @@ button {
     background-color: #476D59 !important;
     color: white !important;
 }
+
+.btn:hover {
+    color: black;
+    background-color: rgba(71, 109, 89, 0.3) !important;
+}
+
+/* modal window */
 
 .modal {
     display: none;
@@ -76,4 +89,10 @@ button {
 
 .modal-content img {
     margin: auto;
+}
+
+/* game functionality */
+
+.hide {
+    display: none;
 }

@@ -1,4 +1,4 @@
-// modal window code
+// modal window functionality
 let modal = document.getElementById("modalContainer");
 let modalBtn = document.getElementById("modalBtn");
 let span = document.getElementsByClassName("close")[0];
@@ -16,4 +16,5 @@ window.onclick = function (event) {
         modal.style.display = "none";
     }
 }
-// modal window code
+
+// game functionailty
