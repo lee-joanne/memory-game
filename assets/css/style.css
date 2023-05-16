@@ -54,6 +54,9 @@ button {
 .btn {
     background-color: #476D59 !important;
     color: white !important;
+    height: 50px !important;
+    width: 200px;
+    font-family: 'Rubik' !important;
 }
 
 .btn:hover {
@@ -77,12 +80,11 @@ button {
 }
 
 .modal-content {
-    background-color: rgba(255, 255, 255, 0.8) !important;
+    background-color: rgba(255, 255, 255, 0.85) !important;
     margin: 15% auto;
     border-radius: 15px !important;
     padding: 45px;
     width: 40% !important;
-    text-align: center;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
         rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }

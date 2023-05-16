@@ -18,3 +18,5 @@ window.onclick = function (event) {
 }
 
 // game functionailty
+
+let startMenu = document.getElementById("start-menu");
