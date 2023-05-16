@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Darumadrop+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+body {
+    background: url('../images/game-wallpaper.jpeg') no-repeat 20% 40% / cover;
+    height: 100vh;
+}
+
+h1 {
+    font-family: 'Darumadrop One',
+        cursive;
+}
+
+p {
+    font-family: 'Archivo Narrow',
+        sans-serif;
+}
+
+.body-container {
+    width: 60%;
+    height: 75%;
+    background-color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    padding: 25px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.logo-anchor {
+    text-decoration: none;
+    color: black;
+}
+
+.centering {
+    margin: 0 auto;
+}
