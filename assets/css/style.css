@@ -121,3 +121,16 @@ button {
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
         rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
+
+.memory-card {
+    transform: scale(1);
+}
+
+.memory-card:active {
+   transform: scale(0.97);
+   transition: transform .2s;
+ }
+
+.flip {
+    transform: rotatey(180deg);
+}

@@ -23,6 +23,16 @@ let startMenu = document.getElementById("start-menu");
 let startBtn = document.getElementById("startBtn");
 let gameContainer = document.getElementById("memory-game");
 let counter = document.getElementById("timer");
+let memoryCards = document.getElementsByClassName("memory-card");
+
+function flipCard() {
+    this.classList.toggle('flip');
+}
+
+for (let i = 0; i < memoryCards.length; i++) {
+    memoryCards[i].addEventListener("click", flipCard);
+}
+
 
 startBtn.addEventListener("click", startGame);
 
