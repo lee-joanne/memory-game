@@ -25,12 +25,12 @@ let gameContainer = document.getElementById("memory-game");
 let counter = document.getElementById("timer");
 let memoryCards = document.getElementsByClassName("memory-card");
 
-function flipCard() {
+function flipCards() {
     this.classList.toggle('flip');
 }
 
 for (let i = 0; i < memoryCards.length; i++) {
-    memoryCards[i].addEventListener("click", flipCard);
+    memoryCards[i].addEventListener("click", flipCards);
 }
 
 

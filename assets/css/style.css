@@ -108,6 +108,7 @@ button {
     align-content: stretch;
     width: 550px;
     height: 550px;
+    perspective: 1000px;
 }
 
 .memory-game-parent>div {
@@ -124,11 +125,13 @@ button {
 
 .memory-card {
     transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform .6s;
 }
 
 .memory-card:active {
    transform: scale(0.97);
-   transition: transform .2s;
+   transition: transform .6s;
  }
 
 .flip {
