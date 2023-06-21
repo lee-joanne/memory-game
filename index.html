@@ -35,19 +35,35 @@
       </div>
     </div>
     <section class="body-container">
-      <header>
-        <div class="centering">
-          <img
-            src="assets/images/logo-gif.gif"
-            alt="Walking totoro creature"
-            width="75"
-            height="60"
-          />
-          <a class="logo-anchor" href="index.html">
-            <h1>Studio Ghibli Memory Game</h1></a
-          >
-        </div>
-      </header>
+
+      <!-- Game header screen -->
+      <div id="centering">
+        <img
+          src="assets/images/logo-gif.gif"
+          alt="Walking totoro creature"
+          width="75"
+          height="60"
+        />
+        <a class="logo-anchor" href="index.html">
+          <h1>Studio Ghibli Memory Game</h1></a
+        >
+      </div>
+
+      <!-- Game over screen -->
+      <div id="game-over-page" class="text-center hide">
+        <img
+          src="assets/images/gameover-totoro.gif"
+          alt="Walking totoro creature"
+          width="75"
+          height="60"
+        />
+        <h1>Sorry, game over</h1>
+        <a class="logo-anchor" href="index.html">
+          <h1>Try again?</h1></a
+        >
+      </div>
+
+      <!-- Instructions / Start game section -->
       <div id="start-menu">
         <div class="text-center pt-3">
           <button id="modalBtn" type="button" class="btn">Instructions</button>
@@ -56,6 +72,7 @@
           <button id="startBtn" type="button" class="btn">Start Game</button>
         </div>
       </div>
+
       <!-- game cards here -->
       <div id="memory-game" class="hide">
         <p class="text-center">

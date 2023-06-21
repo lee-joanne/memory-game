@@ -18,12 +18,13 @@ window.onclick = function (event) {
 }
 
 // game functionailty
-
+let titleScreen = document.getElementById("centering")
 let startMenu = document.getElementById("start-menu");
 let startBtn = document.getElementById("startBtn");
 let gameContainer = document.getElementById("memory-game");
 let counter = document.getElementById("timer");
 let memoryCards = document.getElementsByClassName("memory-card");
+let gameOverPage = document.getElementById("game-over-page");
 
 function flipCards() {
     this.classList.toggle('flip');
@@ -55,6 +56,11 @@ function countdown(minutes, seconds) {
                     countdown(minutes - 1, 59);
                 }, 1000);
             }
+        }
+        if (counter.innerText === "0:00") {
+                gameOverPage.classList.remove("hide");
+                gameContainer.classList.add("hide");
+                titleScreen.classList.add("hide")
         }
     }
     tick();
