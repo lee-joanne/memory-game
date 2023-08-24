@@ -67,6 +67,8 @@ function countdown(minutes, seconds) {
 }
 
 const cards = document.querySelectorAll('.memory-card');
+// Fix bugs: disabling cards from being flipped again after two are selected
+// when game is over, show screen to user
 
 let hasFlippedCard = false; // card not flipped yet
 let lockBoard = false; // board not locked yet
