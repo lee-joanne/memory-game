@@ -26,21 +26,21 @@ let counter = document.getElementById("timer");
 let memoryCards = document.getElementsByClassName("memory-card");
 let gameOverPage = document.getElementById("game-over-page");
 
-function flipCards() {
-    this.classList.toggle('flip');
-}
-
-for (let i = 0; i < memoryCards.length; i++) {
-    memoryCards[i].addEventListener("click", flipCards);
-}
-
-
 startBtn.addEventListener("click", startGame);
 
 function startGame() {
     startMenu.classList.add("hide");
     gameContainer.classList.remove("hide");
     countdown(2, 30);
+}
+
+function flipCards() {
+    // functionality to flip the cards
+    this.classList.toggle('flip');
+}
+
+for (let i = 0; i < memoryCards.length; i++) {
+    memoryCards[i].addEventListener("click", flipCards);
 }
 
 function countdown(minutes, seconds) {
@@ -65,3 +65,65 @@ function countdown(minutes, seconds) {
     }
     tick();
 }
+
+const cards = document.querySelectorAll('.memory-card');
+
+let hasFlippedCard = false; // card not flipped yet
+let lockBoard = false; // board not locked yet
+let firstCard, secondCard;
+
+function flipCard() {
+    if (lockBoard) return; // if lockboard is true, stop
+    if (this === firstCard) return; // if clicked card is same as the first card, stop
+
+    this.classList.add('flip');
+
+    if (!hasFlippedCard) { // if false
+        hasFlippedCard = true; // set flippedCard to true
+        firstCard = this; // assign this card as the first card
+        return; // stop
+    }
+
+    secondCard = this; // hasflipped is true, so if statement is skipped. now this card is second card
+    hasFlippedCard = false; // set flippedcard back to false
+
+    checkForMatch();
+}
+
+function checkForMatch() {
+    let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
+    isMatch ? disableCards() : unflipCards();
+}
+
+function disableCards() {
+    firstCard.removeEventListener('click', flipCard);
+    secondCard.removeEventListener('click', flipCard);
+
+    resetBoard();
+}
+
+function unflipCards() {
+    lockBoard = true;
+
+    setTimeout(() => {
+        firstCard.classList.remove('flip');
+        secondCard.classList.remove('flip');
+
+        lockBoard = false;
+        resetBoard();
+    }, 1000);
+}
+
+function resetBoard() {
+    [hasFlippedCard, lockBoard] = [false, false];
+    [firstCard, secondCard] = [null, null];
+}
+
+(function shuffle() {
+   cards.forEach(card => {
+     let ramdomPos = Math.floor(Math.random() * 12);
+     card.style.order = ramdomPos;
+   });
+ })();
+
+cards.forEach(card => card.addEventListener('click', flipCard));
