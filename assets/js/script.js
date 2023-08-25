@@ -84,10 +84,12 @@ function flipCard() {
     if (!hasFlippedCard) {
         hasFlippedCard = true;
         firstCard = this;
+        firstCard.classList.add("disabled");
         return;
     }
 
     secondCard = this;
+    secondCard.classList.add("disabled");
     hasFlippedCard = false;
 
     checkForMatch();

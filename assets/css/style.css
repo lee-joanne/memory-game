@@ -127,12 +127,14 @@ button {
         rgba(0, 0, 0, 0.23) 0px 6px 6px;
     backface-visibility: hidden;
     position: absolute;
+    border-radius: 15px;
 }
 
 .memory-card {
     transform: scale(1);
     transform-style: preserve-3d;
     transition: transform .6s;
+    border-radius: 15px;
 }
 
 .front-face {
