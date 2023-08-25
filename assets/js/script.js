@@ -67,16 +67,12 @@ function countdown(minutes, seconds) {
 }
 
 const cards = document.querySelectorAll('.memory-card');
-// Fix bugs: disabling cards from being flipped again after two are selected
-// when game is over, show screen to user
-
 let hasFlippedCard = false; // card not flipped yet
-let lockBoard = false; // board not locked yet
 let firstCard, secondCard;
+let confirmedFirst, confirmedSecond;
 let selectedCardsCount = 0;
 
 function flipCard() {
-    if (lockBoard) return;
     if (this === firstCard) return;
 
     this.classList.add('flip');
@@ -92,14 +88,13 @@ function flipCard() {
     secondCard.classList.add("disabled");
     hasFlippedCard = false;
 
-    checkForMatch();
-
     selectedCardsCount++; // Increment the counter
     console.log(selectedCardsCount)
 
     if (selectedCardsCount == 1) {
         disableRemainingCards();
     }
+    checkForMatch();
 }
 
 function disableRemainingCards() {
@@ -118,29 +113,31 @@ function checkForMatch() {
 }
 
 function disableCards() {
+    confirmedFirst = firstCard
+    confirmedSecond = secondCard
+    confirmedFirst.classList.add('disabled');
+    confirmedSecond.classList.add('disabled');
     resetBoard();
-    firstCard.removeEventListener('click', flipCard);
-    secondCard.removeEventListener('click', flipCard);
 }
 
 function unflipCards() {
-    lockBoard = true;
-
     setTimeout(() => {
         firstCard.classList.remove('flip');
         secondCard.classList.remove('flip');
-
-        lockBoard = false;
         resetBoard();
     }, 1000);
 }
 
 function resetBoard() {
-    [hasFlippedCard, lockBoard] = [false, false];
     [firstCard, secondCard] = [null, null];
+    hasFlippedCard = false;
     selectedCardsCount = 0; // Reset the counter
-    cards.forEach(card => card.addEventListener('click', flipCard));
-    cards.forEach(card => card.classList.remove('disabled'));
+    cards.forEach(card => {
+        if (card !== confirmedFirst && card !== confirmedSecond) {
+            card.addEventListener('click', flipCard);
+            card.classList.remove('disabled');
+    }
+    });
     console.log("Resetting...")
 }
 
