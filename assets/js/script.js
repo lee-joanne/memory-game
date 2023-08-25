@@ -73,23 +73,41 @@ const cards = document.querySelectorAll('.memory-card');
 let hasFlippedCard = false; // card not flipped yet
 let lockBoard = false; // board not locked yet
 let firstCard, secondCard;
+let selectedCardsCount = 0;
 
 function flipCard() {
-    if (lockBoard) return; // if lockboard is true, stop
-    if (this === firstCard) return; // if clicked card is same as the first card, stop
+    if (lockBoard) return;
+    if (this === firstCard) return;
 
     this.classList.add('flip');
 
-    if (!hasFlippedCard) { // if false
-        hasFlippedCard = true; // set flippedCard to true
-        firstCard = this; // assign this card as the first card
-        return; // stop
+    if (!hasFlippedCard) {
+        hasFlippedCard = true;
+        firstCard = this;
+        return;
     }
 
-    secondCard = this; // hasflipped is true, so if statement is skipped. now this card is second card
-    hasFlippedCard = false; // set flippedcard back to false
+    secondCard = this;
+    hasFlippedCard = false;
 
     checkForMatch();
+
+    selectedCardsCount++; // Increment the counter
+    console.log(selectedCardsCount)
+
+    if (selectedCardsCount == 1) {
+        disableRemainingCards();
+    }
+}
+
+function disableRemainingCards() {
+    console.log("disabling cards...")
+    cards.forEach(card => {
+        if (card !== firstCard && card !== secondCard) {
+            card.removeEventListener('click', flipCard);
+            card.classList.add('disabled');
+        }
+    });
 }
 
 function checkForMatch() {
@@ -98,10 +116,9 @@ function checkForMatch() {
 }
 
 function disableCards() {
+    resetBoard();
     firstCard.removeEventListener('click', flipCard);
     secondCard.removeEventListener('click', flipCard);
-
-    resetBoard();
 }
 
 function unflipCards() {
@@ -119,7 +136,12 @@ function unflipCards() {
 function resetBoard() {
     [hasFlippedCard, lockBoard] = [false, false];
     [firstCard, secondCard] = [null, null];
+    selectedCardsCount = 0; // Reset the counter
+    cards.forEach(card => card.addEventListener('click', flipCard));
+    cards.forEach(card => card.classList.remove('disabled'));
+    console.log("Resetting...")
 }
+
 
 (function shuffle() {
    cards.forEach(card => {

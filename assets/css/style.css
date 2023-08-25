@@ -25,6 +25,10 @@ button {
         sans-serif;
 }
 
+.disabled {
+    pointer-events: none;
+}
+
 .body-container {
     width: auto;
     height: auto;
