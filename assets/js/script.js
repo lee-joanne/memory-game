@@ -2,6 +2,7 @@
 let modal = document.getElementById("modalContainer");
 let modalBtn = document.getElementById("modalBtn");
 let span = document.getElementsByClassName("close")[0];
+let ping = new Audio('../assets/audio/ding.mp3');
 
 modalBtn.onclick = function () {
     modal.style.display = "block";
@@ -113,6 +114,7 @@ function checkForMatch() {
 }
 
 function disableCards() {
+    ping.play();
     confirmedFirst = firstCard
     confirmedSecond = secondCard
     confirmedFirst.classList.add('disabled');
