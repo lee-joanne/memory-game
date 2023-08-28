@@ -27,8 +27,7 @@ let gameOverPage = document.getElementById("game-over-page");
 let turnCount = document.getElementById("turns");
 let finalCount = document.getElementById("final-count");
 let wellDonePage = document.getElementById("well-done-page");
-let ping = new Audio('../audio/ding.mp3');
-console.log(ping)
+let ding = document.getElementById('ding');
 
 function startGame() {
     // Function to start the game.
@@ -125,7 +124,7 @@ function disableCards() {
     // Increment matchedCards by one.
     // If matchedCards is 18, call the wellDone function.
     // Reset the board.
-    ping.play();
+    ding.play();
     matchedCards += 1;
     if (matchedCards == 18) {
         wellDone();
