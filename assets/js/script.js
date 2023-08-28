@@ -27,14 +27,16 @@ let counter = document.getElementById("timer");
 let memoryCards = document.getElementsByClassName("memory-card");
 let gameOverPage = document.getElementById("game-over-page");
 let turnCount = document.getElementById("turns");
-
-startBtn.addEventListener("click", startGame);
+let finalCount = document.getElementById("final-count");
+let wellDonePage = document.getElementById("well-done-page");
 
 function startGame() {
     startMenu.classList.add("hide");
     gameContainer.classList.remove("hide");
     countdown(2, 30);
 }
+
+startBtn.addEventListener("click", startGame);
 
 function flipCards() {
     // functionality to flip the cards
@@ -73,10 +75,11 @@ let hasFlippedCard = false; // card not flipped yet
 let firstCard, secondCard;
 let confirmedFirst, confirmedSecond;
 let selectedCardsCount = 0;
+let matchedCards = 0;
 
 function incrementTurns() {
     let oldTurn = parseInt(turnCount.innerText);
-    turnCount.innerText = ++oldTurn
+    turnCount.innerText = ++oldTurn;
 }
 
 function flipCard() {
@@ -96,7 +99,6 @@ function flipCard() {
     hasFlippedCard = false;
 
     selectedCardsCount++; // Increment the counter
-    console.log(selectedCardsCount)
 
     if (selectedCardsCount == 1) {
         disableRemainingCards();
@@ -126,6 +128,12 @@ function disableCards() {
     confirmedSecond = secondCard
     confirmedFirst.classList.add('disabled');
     confirmedSecond.classList.add('disabled');
+    matchedCards += 1;
+    console.log(matchedCards);
+    if (matchedCards == 18) {
+        console.log("Done");
+        wellDone();
+    }
     resetBoard();
 }
 
@@ -150,7 +158,6 @@ function resetBoard() {
     console.log("Resetting...")
 }
 
-
 (function shuffle() {
    cards.forEach(card => {
      let ramdomPos = Math.floor(Math.random() * 12);
@@ -159,3 +166,11 @@ function resetBoard() {
  })();
 
 cards.forEach(card => card.addEventListener('click', flipCard));
+
+function wellDone() {
+    console.log("This function is running")
+    finalCount.innerText = turnCount.innerText;
+    wellDonePage.classList.remove("hide");
+    gameContainer.classList.add("hide");
+    titleScreen.classList.add("hide")
+}

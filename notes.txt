@@ -1,2 +1,0 @@
-
-2. display good job message if user completes in time
