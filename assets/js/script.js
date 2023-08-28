@@ -26,6 +26,7 @@ let gameContainer = document.getElementById("memory-game");
 let counter = document.getElementById("timer");
 let memoryCards = document.getElementsByClassName("memory-card");
 let gameOverPage = document.getElementById("game-over-page");
+let turnCount = document.getElementById("turns");
 
 startBtn.addEventListener("click", startGame);
 
@@ -73,6 +74,11 @@ let firstCard, secondCard;
 let confirmedFirst, confirmedSecond;
 let selectedCardsCount = 0;
 
+function incrementTurns() {
+    let oldTurn = parseInt(turnCount.innerText);
+    turnCount.innerText = ++oldTurn
+}
+
 function flipCard() {
     if (this === firstCard) return;
 
@@ -110,6 +116,7 @@ function disableRemainingCards() {
 
 function checkForMatch() {
     let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
+    incrementTurns();
     isMatch ? disableCards() : unflipCards();
 }
 
