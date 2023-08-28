@@ -148,4 +148,5 @@ button {
 
 .flip {
     transform: rotatey(180deg);
+    pointer-events: none;
 }
