@@ -28,6 +28,7 @@ let turnCount = document.getElementById("turns");
 let finalCount = document.getElementById("final-count");
 let wellDonePage = document.getElementById("well-done-page");
 let ding = document.getElementById('ding');
+let gameOver = false;
 
 function startGame() {
     // Function to start the game.
@@ -41,9 +42,9 @@ function startGame() {
 startBtn.addEventListener("click", startGame);
 
 function countdown(minutes, seconds) {
-    let timeoutHandle;
     // Countdown, two minutes and 30 seconds passed in from startGame function.
     function tick() {
+        let timeoutHandle;
         counter.innerHTML =
             minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
         seconds--;
@@ -57,10 +58,14 @@ function countdown(minutes, seconds) {
             }
         }
         if (counter.innerText === "0:00") {
-                // if countdown is over, show gameover screen.
-                gameOverPage.classList.remove("hide");
-                gameContainer.classList.add("hide");
-                titleScreen.classList.add("hide");
+            // if countdown is over, show gameover screen.
+            gameOverPage.classList.remove("hide");
+            gameContainer.classList.add("hide");
+            titleScreen.classList.add("hide");
+        }
+        if (gameOver) {
+            // if the game is over, stop the timer.
+            clearTimeout(timeoutHandle);
         }
     }
     tick();
@@ -183,8 +188,10 @@ cards.forEach(card => card.addEventListener('click', flipCard));
 
 function wellDone() {
     // Function to show well done page.
+    // Set gameOver to true.
     // Shows final score to the user.
     // Shows well done page and hides game container and title screen.
+    gameOver = true;
     finalCount.innerText = turnCount.innerText;
     wellDonePage.classList.remove("hide");
     gameContainer.classList.add("hide");
