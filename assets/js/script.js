@@ -5,25 +5,24 @@ let span = document.getElementsByClassName("close")[0];
 
 modalBtn.onclick = function () {
     modal.style.display = "block";
-}
+};
 
 span.onclick = function () {
     modal.style.display = "none";
-}
+};
 
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
-}
+};
 
 // Game functionailty
-let titleScreen = document.getElementById("centering")
+let titleScreen = document.getElementById("centering");
 let startMenu = document.getElementById("start-menu");
 let startBtn = document.getElementById("startBtn");
 let gameContainer = document.getElementById("memory-game");
 let counter = document.getElementById("timer");
-let memoryCards = document.getElementsByClassName("memory-card");
 let gameOverPage = document.getElementById("game-over-page");
 let turnCount = document.getElementById("turns");
 let finalCount = document.getElementById("final-count");
@@ -42,6 +41,7 @@ function startGame() {
 startBtn.addEventListener("click", startGame);
 
 function countdown(minutes, seconds) {
+    let timeoutHandle;
     // Countdown, two minutes and 30 seconds passed in from startGame function.
     function tick() {
         counter.innerHTML =
@@ -60,7 +60,7 @@ function countdown(minutes, seconds) {
                 // if countdown is over, show gameover screen.
                 gameOverPage.classList.remove("hide");
                 gameContainer.classList.add("hide");
-                titleScreen.classList.add("hide")
+                titleScreen.classList.add("hide");
         }
     }
     tick();
@@ -114,22 +114,16 @@ function disableRemainingCards() {
     });
 }
 
-function checkForMatch() {
-    // Function to run to check of two cards match.
-    // Check for match using the dataset framework.
-    // Call the incrementTurns function to increment turn number.
-    // If it's a match, call disableCards. Else, call unFlipCards.
-    let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
-    incrementTurns();
-    isMatch ? disableCards() : unflipCards();
-}
+// Game functionality
+
+// ...
 
 function disableCards() {
     // Function to run when cards are a match.
-    // Play song.
+    // Play sound effect.
     // Increment matchedCards by one.
     // If matchedCards is 18, call the wellDone function.
-    // resetBoard function called.
+    // Reset the board.
     ping.play();
     matchedCards += 1;
     if (matchedCards == 18) {
@@ -140,12 +134,27 @@ function disableCards() {
 
 function unflipCards() {
     // Function to run if cards do not match.
-    // Remove flip class and call resetBoard function when timer ends.
+    // Remove the flip class from the first and second cards.
+    // Reset the board after a delay.
     setTimeout(() => {
         firstCard.classList.remove('flip');
         secondCard.classList.remove('flip');
         resetBoard();
     }, 1000);
+}
+
+function checkForMatch() {
+    // Function to run to check if two cards match.
+    // Check for a match using the dataset framework.
+    // Call the incrementTurns function to increment the turn number.
+    // If it's a match, call disableCards. Else, call unflipCards.
+    let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
+    incrementTurns();
+    if (isMatch) {
+        disableCards();
+    } else {
+        unflipCards();
+    }
 }
 
 function resetBoard() {
@@ -159,17 +168,18 @@ function resetBoard() {
         if (!card.classList.contains("flip")) {
             card.addEventListener('click', flipCard);
             card.classList.remove('disabled');
-    }
+        }
     });
 }
 
 (function shuffle() {
-    // Function to shuffle the cards, will run when website loads.
-   cards.forEach(card => {
-     let ramdomPos = Math.floor(Math.random() * 12);
-     card.style.order = ramdomPos;
-   });
- })();
+    // Function to shuffle the cards, will run when the website loads.
+    cards.forEach(card => {
+        let randomPos = Math.floor(Math.random() * 12);
+        card.style.order = randomPos;
+    });
+})();
+
 
 cards.forEach(card => card.addEventListener('click', flipCard));
 
@@ -180,5 +190,5 @@ function wellDone() {
     finalCount.innerText = turnCount.innerText;
     wellDonePage.classList.remove("hide");
     gameContainer.classList.add("hide");
-    titleScreen.classList.add("hide")
+    titleScreen.classList.add("hide");
 }
