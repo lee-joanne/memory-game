@@ -116,8 +116,6 @@ function disableRemainingCards() {
 
 // Game functionality
 
-// ...
-
 function disableCards() {
     // Function to run when cards are a match.
     // Play sound effect.
