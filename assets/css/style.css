@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&family=Rubik&display=swap');
 
-/* basic styling  */
+/* general styling  */
 
 * {
     margin: 0;
@@ -97,7 +97,7 @@ button {
     margin: auto;
 }
 
-/* game functionality */
+/* game styling */
 
 .hide {
     display: none;
